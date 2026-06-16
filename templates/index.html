@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZipUrLink | Shorten. Share. Track.</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#6366F1;
+    --primary-dark:#4F46E5;
+    --accent:#8B5CF6;
+
+    --bg:#F8FAFC;
+    --bg-soft:#EEF2FF;
+
+    --text:#0F172A;
+    --text-light:#64748B;
+
+    --success:#10B981;
+    --success-bg:#F0FDF4;
+
+    --border:#E2E8F0;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#F8FAFC,#EEF2FF);
+    min-height:100vh;
+    padding:40px 20px;
+    color:var(--text);
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo-container{
+    display:flex;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.logo-img{
+    width:260px;
+    max-width:100%;
+    height:auto;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    background:var(--bg-soft);
+    color:var(--primary);
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:3rem;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:var(--text-light);
+    font-size:1.1rem;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    border:1px solid var(--border);
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+    margin-bottom:24px;
+}
+
+/* FORM */
+
+.input-row{
+    display:flex;
+    gap:12px;
+}
+
+input[type="text"]{
+    flex:1;
+    height:58px;
+    border:2px solid var(--border);
+    border-radius:14px;
+    padding:0 18px;
+    font-size:1rem;
+    outline:none;
+    transition:.3s;
+}
+
+input[type="text"]:focus{
+    border-color:var(--primary);
+}
+
+button{
+    height:58px;
+    padding:0 30px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+    color:white;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(99,102,241,.25);
+}
+
+/* RESULT */
+
+.result{
+    margin-top:20px;
+    background:var(--success-bg);
+    border:1px solid #BBF7D0;
+    border-radius:14px;
+    padding:18px;
+}
+
+.result-title{
+    color:var(--success);
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.result-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.result a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+    word-break:break-all;
+}
+
+.copy-btn{
+    height:auto;
+    padding:10px 18px;
+}
+
+/* ANALYTICS */
+
+.analytics-title{
+    font-size:1.4rem;
+    margin-bottom:24px;
+}
+
+.stats{
+    display:flex;
+    gap:16px;
+    margin-bottom:24px;
+}
+
+.stat{
+    flex:1;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+}
+
+.stat span{
+    color:var(--text-light);
+}
+
+.stat h3{
+    font-size:2rem;
+    margin-top:8px;
+}
+
+/* TABLE */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    padding:14px;
+    color:var(--text-light);
+    border-bottom:2px solid var(--border);
+}
+
+td{
+    padding:14px;
+    border-bottom:1px solid var(--border);
+}
+
+tbody tr{
+    transition:.2s;
+}
+
+tbody tr:hover{
+    background:#F8FAFC;
+}
+
+.short-link{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.original{
+    display:block;
+    max-width:350px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:var(--text-light);
+}
+
+.clicks{
+    background:#ECFDF5;
+    color:var(--success);
+    padding:5px 12px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:var(--text-light);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.3rem;
+}
+
+.input-row{
+    flex-direction:column;
+}
+
+button{
+    width:100%;
+}
+
+.result-row{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.stats{
+    flex-direction:column;
+}
+
+.logo-img{
+    width:200px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="hero">
+
+        <div class="logo-container">
+            <img
+                src="{{ url_for('static', filename='logo.png') }}"
+                alt="ZipUrLink"
+                class="logo-img">
+        </div>
+
+        <div class="badge">
+            🚀 Fast • Secure • Analytics Included
+        </div>
+
+        <h1>Shorten URLs in Seconds</h1>
+
+        <p>
+            Turn long URLs into smart, trackable links in seconds.
+        </p>
+
+    </div>
+
+    <!-- URL FORM -->
+
+    <div class="card">
+
+        <form method="POST" action="/shorten">
+
+            <div class="input-row">
+
+                <input
+                    type="text"
+                    name="url"
+                    placeholder="Paste your long URL here..."
+                    required>
+
+                <button type="submit">
+                    Zip My Link
+                </button>
+
+            </div>
+
+        </form>
+
+        {% if short_url %}
+
+        <div class="result">
+
+            <div class="result-title">
+                ✅ Link Created Successfully
+            </div>
+
+            <div class="result-row">
+
+                <a href="{{ short_url }}" target="_blank">
+                    {{ short_url }}
+                </a>
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyLink('{{ short_url }}', this)">
+                    Copy
+                </button>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <!-- ANALYTICS -->
+
+    <div class="card">
+
+        <h2 class="analytics-title">
+            📊 ZipUrLink Analytics
+        </h2>
+
+        {% set total = namespace(value=0) %}
+        {% for row in urls %}
+            {% set total.value = total.value + row[2] %}
+        {% endfor %}
+
+        <div class="stats">
+
+            <div class="stat">
+                <span>Total Links</span>
+                <h3>{{ urls|length }}</h3>
+            </div>
+
+            <div class="stat">
+                <span>Total Clicks</span>
+                <h3>{{ total.value }}</h3>
+            </div>
+
+        </div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Short URL</th>
+                    <th>Original URL</th>
+                    <th>Clicks</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for row in urls %}
+
+                <tr>
+
+                    <td>
+                        <a
+                            href="/{{ row[1] }}"
+                            class="short-link"
+                            target="_blank">
+                            /{{ row[1] }}
+                        </a>
+                    </td>
+
+                    <td>
+                        <span class="original">
+                            {{ row[0] }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="clicks">
+                            {{ row[2] }} clicks
+                        </span>
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="footer">
+        ⚡ ZipUrLink • Shorten. Share. Track.
+    </div>
+
+</div>
+
+<script>
+function copyLink(link, btn){
+
+    navigator.clipboard.writeText(link);
+
+    btn.innerText = "Copied!";
+
+    setTimeout(() => {
+        btn.innerText = "Copy";
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
