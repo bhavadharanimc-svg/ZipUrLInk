@@ -25,6 +25,5 @@ def redirect_url(short_code):
         database.increment_clicks(short_code)
         return redirect(original_url)
     return "URL not found", 404
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
