@@ -26,4 +26,4 @@ def redirect_url(short_code):
         return redirect(original_url)
     return "URL not found", 404
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=7860)
