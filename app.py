@@ -14,7 +14,8 @@ def shorten():
     original_url = request.form["url"]
     short_code = database.generate_short_code(original_url)
     database.save_url(original_url, short_code)
-    short_url = f"http://127.0.0.1:5000/{short_code}"
+    base_url = request.host_url.rstrip("/")
+    short_url = f"{base_url}/{short_code}"
     urls = database.get_all_urls()
     return render_template("index.html", short_url=short_url, urls=urls)
 
@@ -25,5 +26,6 @@ def redirect_url(short_code):
         database.increment_clicks(short_code)
         return redirect(original_url)
     return "URL not found", 404
+
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
